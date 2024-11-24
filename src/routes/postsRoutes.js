@@ -3,14 +3,10 @@ import multer from "multer"; // Importa o Multer para lidar com uploads de arqui
 import { listarPosts, postarNovoPost, uploadImagem, atualizarNovoPost } from "../controllers/postsController.js"; // Importa as funções controladoras para lidar com a lógica dos posts
 import cors from "cors";
 
-// Configuração do CORS para aceitar requisições tanto do localhost quanto do Vercel
 const corsOptions = {
-  origin: [
-    "http://localhost:8000", // Para desenvolvimento local
-    "https://instabytes.vercel.app/" // Substitua com a URL real do seu frontend no Vercel
-  ],
-  optionsSuccessStatus: 200,
-};
+  origin: "http://localhost:8000",
+  optionsSuccessStatus: 200
+}
 
 // Configura o armazenamento do Multer para uploads de imagens
 const storage = multer.diskStorage({
@@ -31,8 +27,7 @@ const upload = multer({ storage: storage });
 const routes = (app) => {
   // Permite que o servidor interprete corpos de requisições no formato JSON
   app.use(express.json());
-  app.use(cors(corsOptions)); // Usando a configuração de CORS para permitir as origens definidas
-
+  app.use(cors(corsOptions))
   // Rota para recuperar uma lista de todos os posts
   app.get("/posts", listarPosts); // Chama a função controladora apropriada
 
@@ -40,10 +35,9 @@ const routes = (app) => {
   app.post("/posts", postarNovoPost); // Chama a função controladora para criação de posts
 
   // Rota para upload de imagens (assumindo uma única imagem chamada "imagem")
-  app.post("/upload", upload.single("imagem"), uploadImagem); // Chama a função controladora para processamento da imagem
+  app.post("/upload", upload.single("imagem"), uploadImagem); // Chama a função controladora para processamento da imagem`
 
-  // Rota para atualizar um post existente
-  app.put("/upload/:id", atualizarNovoPost); // Rota para atualização de post
+  app.put("/upload/:id", atualizarNovoPost)
 };
 
 export default routes;
