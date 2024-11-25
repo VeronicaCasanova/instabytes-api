@@ -6,7 +6,8 @@ import cors from "cors";
 const corsOptions = {
   origin: [
     "http://localhost:8000", // Para desenvolvimento local
-    "https://instabytes.vercel.app" // Substitua com a URL real do seu frontend no Vercel
+    "https://instabytes.vercel.app", // frontend no Vercel
+    "https://veronicacasanova.github.io/instabytes/" // frontend no GitHub Pages
   ],
   optionsSuccessStatus: 200
 }
