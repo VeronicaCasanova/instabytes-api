@@ -4,7 +4,10 @@ import { listarPosts, postarNovoPost, uploadImagem, atualizarNovoPost } from "..
 import cors from "cors";
 
 const corsOptions = {
-  origin: "http://localhost:8000",
+  origin: [
+    "http://localhost:8000", // Para desenvolvimento local
+    "https://instabytes.vercel.app" // Substitua com a URL real do seu frontend no Vercel
+  ],
   optionsSuccessStatus: 200
 }
 
